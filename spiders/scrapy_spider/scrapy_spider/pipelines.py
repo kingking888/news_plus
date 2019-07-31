@@ -27,11 +27,12 @@ class DuplicatePipeline(object):
     利用redis去重
     """
     # 初始化redis
-    redis_db = redis.Redis(host='127.0.0.1', port=6379, db=4)
+    redis_db = redis.Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB)
     redis_data_dict = 'jump_url'
     # 初始化mongo
     client = MongoClient(host=settings.MONGO_HOST, port=settings.MONGO_PORT)
     db = client[settings.MONGO_DBNAME]
+    db.authenticate(name=settings.MONGO_USER, password=settings.MONGO_PWD)
     collection = db['scrapy']
 
     def __init__(self):
