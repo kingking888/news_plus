@@ -8,9 +8,17 @@
             <el-row>
               <div class="block">
                 <el-card>
-                  <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+                  <el-checkbox
+                    :indeterminate="isIndeterminate"
+                    v-model="checkAll"
+                    @change="handleCheckAllChange"
+                  >全选</el-checkbox>
                   <el-checkbox-group v-model="checkedCats" @change="handleCheckedCatsChange">
-                    <el-checkbox v-for="(item, index) in categories" :label="item" :key="item">{{ item }}</el-checkbox>
+                    <el-checkbox
+                      v-for="(item, index) in categories"
+                      :label="item"
+                      :key="index"
+                    >{{ item | formatCatName }}</el-checkbox>
                   </el-checkbox-group>
                 </el-card>
               </div>
@@ -40,9 +48,6 @@
             </el-row>
           </el-col>
         </el-row>
-
-        <!-- <p>{{ randomNumber }}</p>
-        <button @click="getRandom()">click!</button>-->
       </el-main>
 
       <el-footer></el-footer>
@@ -51,15 +56,21 @@
 </template>
 
 <script>
-const catOptions = ["36kr", "21经济", "钛媒体"];
+const catOptions = [
+  '36kr', '21jingji', 'tmtpost'
+]
+const catDic = {
+  '36kr': '36氪',
+  '21jingji': '21经济',
+  'tmtpost': '钛媒体',
+}
 export default {
   data() {
     return {
-      checkAll: true,
+      checkAll: false,
       isIndeterminate: true,
       categories: catOptions,
-      checkedCats: ["36kr", "21经济"],
-      randomNumber: 0,
+      checkedCats: ['36kr', '21jingji', 'tmtpost'],
       dataList: [
         { title: "标题标题标题", content: "内容内容内容" },
         { title: "标题标题标题", content: "内容内容内容" },
@@ -72,25 +83,42 @@ export default {
         { title: "标题标题标题", content: "内容内容内容" },
         { title: "标题标题标题", content: "内容内容内容" }
       ],
-      category: true
     };
   },
   methods: {
     handleCheckAllChange(val) {
-        this.checkedCats = val ? catOptions : [];
-        this.isIndeterminate = false;
-      },
-    handleCheckedCatsChange() {
-      let checkedCount = value.length;
-      this.checkAll = checkedCount === this.categories.length;
-      this.isIndeterminate =
-        checkedCount > 0 && checkedCount < this.categories.length;
+      this.checkedCats = val ? catOptions : [];
+      this.isIndeterminate = false
+      this.getNewsData()
     },
-    getRandom() {
-      const path = this.$host + "/api/random";
-      this.$ajax.get(path).then(res => {
-        this.randomNumber = res.data.randomNumber;
-      });
+    handleCheckedCatsChange(value) {
+      let checkedCount = value.length;
+      this.checkAll = checkedCount === this.categories.length
+      this.isIndeterminate =
+        checkedCount > 0 && checkedCount < this.categories.length
+      this.getNewsData()
+    },
+    getNewsData() {
+      console.log(this.checkedCats)
+      const path = this.$host + "/api/newsflow"
+      this.$ajax.get(path, {
+        params: {
+          category: this.checkedCats
+        },
+        paramsSerializer: params => {
+          return this.$qs.stringify(params, { indices: false })
+        }
+      })
+      .then(res => {
+        console.log(res)
+        this.dataList = res.data
+      })
+    },
+  },
+  filters: {
+    formatCatName(name) {
+      let catName = catDic[name]
+      return catName
     }
   }
 };

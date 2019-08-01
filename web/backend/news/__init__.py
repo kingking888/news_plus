@@ -44,11 +44,10 @@ def create_app(config_name):
     app.config.from_object(config[config_name])
     # 配置数据库 MongoDB
     app.config.update(
-        MONGO_URI='mongodb://localhost:27017/news_plus',
-        # MONGO_USERNAME='bjhee',
-        # MONGO_PASSWORD='111111',
+        MONGO_URI='mongodb://remote:remote@139.196.102.128:27017/news_plus',
+        # MONGO_USERNAME='remote',
+        # MONGO_PASSWORD='remote',
     )
-    mongo = PyMongo(app)
     # 配置redis
     global redis_store
     redis_store = redis.StrictRedis(host=config[config_name].REDIS_HOST, port=config[config_name].REDIS_PORT)
@@ -57,6 +56,7 @@ def create_app(config_name):
     # 设置session保存位置
     Session(app)
     # CORS跨域
-    cors = CORS(app, resources={r"/api/*": {"origin": "*"}})
+    # cors = CORS(app, resources={r"/api/*": {"origin": "*"}})
+    CORS(app)
 
     return app
