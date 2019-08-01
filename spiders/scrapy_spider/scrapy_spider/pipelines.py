@@ -32,7 +32,8 @@ class DuplicatePipeline(object):
     # 初始化mongo
     client = MongoClient(host=settings.MONGO_HOST, port=settings.MONGO_PORT)
     db = client[settings.MONGO_DBNAME]
-    db.authenticate(name=settings.MONGO_USER, password=settings.MONGO_PWD)
+    # 本地禁用认证
+    # db.authenticate(name=settings.MONGO_USER, password=settings.MONGO_PWD)
     collection = db['scrapy']
 
     def __init__(self):
@@ -40,9 +41,7 @@ class DuplicatePipeline(object):
         if self.redis_db.hlen(self.redis_data_dict) == 0:
             db_docs = self.collection.find({}, {'href': 1, '_id': 0}).limit(20000)
             for obj in db_docs:
-                print(obj)
                 href = obj['href']
-                print(href)
                 self.redis_db.hset(self.redis_data_dict, href, 0)
 
     def process_item(self, item, spider):

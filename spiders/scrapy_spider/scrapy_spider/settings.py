@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = 'scrapy_spider.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'scrapy_spider (+http://www.yourdomain.com)'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -94,16 +94,15 @@ ITEM_PIPELINES = {
 LOG_LEVEL = "INFO"
 
 # Redis
-# REDIS_HOST = '127.0.0.1'
-REDIS_HOST = '139.196.102.128'
+REDIS_HOST = '127.0.0.1'
+# REDIS_HOST = '139.196.102.128'
 REDIS_PORT = 6379
 REDIS_DB = 4
 
 # MongoDB
-# MONGO_HOST = '127.0.0.1'
-# MONGO_PORT = 27017
+MONGO_HOST = '127.0.0.1'
 # MONGO_DBNAME = 'test'
-MONGO_HOST = '139.196.102.128'
+# MONGO_HOST = '139.196.102.128'
 MONGO_PORT = 27017
 MONGO_DBNAME = 'news_plus'
 MONGO_USER = 'remote'

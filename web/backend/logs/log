@@ -1,0 +1,12 @@
+INFO _internal.py:87 127.0.0.1 - - [01/Aug/2019 11:11:09] "GET / HTTP/1.1" 200 -
+INFO _internal.py:87 127.0.0.1 - - [01/Aug/2019 11:11:09] "GET / HTTP/1.1" 200 -
+INFO _internal.py:87 127.0.0.1 - - [01/Aug/2019 11:11:09] "GET /favicon.ico HTTP/1.1" 200 -
+INFO _internal.py:87 127.0.0.1 - - [01/Aug/2019 11:11:10] "GET /favicon.ico HTTP/1.1" 200 -
+INFO _internal.py:87 127.0.0.1 - - [01/Aug/2019 11:11:18] "GET /favicon.ico HTTP/1.1" 200 -
+INFO _internal.py:87 127.0.0.1 - - [01/Aug/2019 11:11:27] "GET /favicon.ico HTTP/1.1" 200 -
+INFO _internal.py:87 127.0.0.1 - - [01/Aug/2019 11:11:32] "GET /static/js/manifest.2ae2e69a05c33dfc65f8.js.map HTTP/1.1" 200 -
+INFO _internal.py:87 127.0.0.1 - - [01/Aug/2019 11:11:32] "GET /static/js/vendor.845372c9bcf86a9fbbe0.js.map HTTP/1.1" 200 -
+INFO _internal.py:87 127.0.0.1 - - [01/Aug/2019 11:11:32] "GET /static/js/app.0d236a6d9af2425fa7a4.js.map HTTP/1.1" 200 -
+INFO _internal.py:87 127.0.0.1 - - [01/Aug/2019 11:11:32] "GET /static/css/app.30790115300ab27614ce176899523b62.css.map HTTP/1.1" 200 -
+INFO _internal.py:87 127.0.0.1 - - [01/Aug/2019 11:11:38] "GET / HTTP/1.1" 200 -
+INFO _internal.py:87 127.0.0.1 - - [01/Aug/2019 11:11:38] "GET /favicon.ico HTTP/1.1" 200 -
