@@ -16,7 +16,7 @@ class A36krSpider(scrapy.Spider):
             content = data.xpath(".//div[@class='item-desc']/text()").extract_first()
             href = data.xpath(".//a[@class='item-title']/@href").extract_first()
             # 拼接href
-            href = 'https://36kr.com/newsflashes' + href
+            href = 'https://36kr.com' + href
 
             now = int(time.time())
 
