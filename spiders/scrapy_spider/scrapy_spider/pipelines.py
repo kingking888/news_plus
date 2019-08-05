@@ -33,7 +33,7 @@ class DuplicatePipeline(object):
     client = MongoClient(host=settings.MONGO_HOST, port=settings.MONGO_PORT)
     db = client[settings.MONGO_DBNAME]
     # 本地禁用认证
-    # db.authenticate(name=settings.MONGO_USER, password=settings.MONGO_PWD)
+    db.authenticate(name=settings.MONGO_USER, password=settings.MONGO_PWD)
     collection = db['scrapy']
 
     def __init__(self):

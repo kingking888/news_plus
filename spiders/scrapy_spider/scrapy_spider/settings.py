@@ -27,13 +27,13 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+# COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -100,9 +100,8 @@ REDIS_PORT = 6379
 REDIS_DB = 4
 
 # MongoDB
-MONGO_HOST = '127.0.0.1'
-# MONGO_DBNAME = 'test'
-# MONGO_HOST = '139.196.102.128'
+# MONGO_HOST = '127.0.0.1'
+MONGO_HOST = '139.196.102.128'
 MONGO_PORT = 27017
 MONGO_DBNAME = 'news_plus'
 MONGO_USER = 'remote'
