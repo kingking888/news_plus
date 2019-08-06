@@ -1,0 +1,12 @@
+# MONGODB settings
+MONGO_HOST = '139.196.102.128'
+MONGO_PORT = 27017
+MONGO_USER = 'remote'
+MONGO_PWD = 'remote'
+MONGO_DBNAME = 'news_plus'
+MONGO_COLLECTION = 'scrapy'
+
+#REDIS settings
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = 6379
+REDIS_DB = 5
