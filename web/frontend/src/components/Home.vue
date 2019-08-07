@@ -44,7 +44,7 @@
                     <span>信息来源: {{ item.source | formatCatName }}</span>
                   </div>
                   <p class="summary">{{ item.content }}</p>
-                  <div class="tag" v-show="item.tags">
+                  <div class="tag" v-show="ifTag(item.tags)">
                     <i class="iconfont icon-tag"></i>
                     <a :href="itm.tag_href" v-for="(itm, idx) in item.tags" :key="idx" target="_blank">{{ itm.tag }}</a>
                   </div>
@@ -66,11 +66,13 @@
 
 <script>
 import { formatDate } from "@/common/date.js";
-const catOptions = ["36kr", "21jingji", "tmtpost", "bloomberg"];
+const catOptions = ["36kr", "21jingji", "tmtpost", "doit", "zhitongcaijing", "bloomberg"];
 const catDic = {
   "36kr": "36氪",
   "21jingji": "21经济",
   "tmtpost": "钛媒体",
+  "doit": "DOIT",
+  "zhitongcaijing": "智通财经",
   "bloomberg": "bloomberg",
 };
 export default {
@@ -79,7 +81,7 @@ export default {
       checkAll: false,
       isIndeterminate: true,
       categories: catOptions,
-      checkedCats: ["36kr", "21jingji", "tmtpost"],
+      checkedCats: ["36kr", "21jingji", "tmtpost", "doit", "zhitongcaijing"],
       dataList: []
     };
   },
@@ -135,6 +137,17 @@ export default {
           let newList = this.dataList.concat(res.data);
           this.dataList = newList;
         });
+    },
+    // 判断tag是否存在
+    ifTag(tag) {
+      if (!tag) {
+        return false
+      }
+      if (tag.length==0) {
+        return false
+      } else {
+        return true
+      }
     }
   },
   filters: {
@@ -180,7 +193,7 @@ export default {
 }
 .tag {
   font-size: 12px;
-  
+  text-align: left;
 }
 .tag a {
   text-decoration: none;
