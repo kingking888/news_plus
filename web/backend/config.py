@@ -15,6 +15,8 @@ class Config(object):
     PERMANENT_SESSION_LIFETIME = 86400
     # 默认日志等级
     LOG_LEVEL = logging.DEBUG
+    # APScheduler
+    SCHEDULER_API_ENABLED = True
 
 
 class DevConfig(Config):

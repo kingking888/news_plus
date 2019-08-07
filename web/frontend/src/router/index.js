@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import Home from '@/components/Home'
+import Scheduler from '@/components/Scheduler'
 import About from '@/components/About'
 import NotFound from '@/components/NotFound'
 
@@ -14,6 +14,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/scheduler',
+      name: 'Scheduler',
+      component: Scheduler
     },
     {
       path: '/about',

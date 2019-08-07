@@ -6,8 +6,8 @@ from flask import Flask
 from flask_wtf.csrf import CSRFProtect
 from flask_session import Session
 from config import DevConfig, ProdConfig
-from flask_pymongo import PyMongo
 from flask_cors import CORS
+from flask_apscheduler import APScheduler
 
 config = {
     "dev": DevConfig,
@@ -45,9 +45,11 @@ def create_app(config_name):
     # 配置数据库 MongoDB
     app.config.update(
         MONGO_URI='mongodb://remote:remote@139.196.102.128:27017/news_plus',
-        # MONGO_USERNAME='remote',
-        # MONGO_PASSWORD='remote',
     )
+    # 注册APScheduler
+    scheduler = APScheduler()
+    scheduler.init_app(app)
+    scheduler.start()
     # 配置redis
     global redis_store
     redis_store = redis.StrictRedis(host=config[config_name].REDIS_HOST, port=config[config_name].REDIS_PORT)

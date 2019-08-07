@@ -4,10 +4,10 @@ from init_db import init_mongo, init_redis
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 
-logging.basicConfig(filename='log.txt',
-                    format='[%(levelname)s]%(asctime)s -%(name)s-%(module)s[line:%(lineno)d]:%(message)s',
-                    datefmt='%Y-%m-%d %H:%M:%S %p',
-                    level=logging.INFO)
+# logging.basicConfig(filename='log.txt',
+#                     format='[%(levelname)s]%(asctime)s -%(name)s-%(module)s[line:%(lineno)d]:%(message)s',
+#                     datefmt='%Y-%m-%d %H:%M:%S %p',
+#                     level=logging.INFO)
 
 
 class Bloomberg():
@@ -100,6 +100,3 @@ class Bloomberg():
         self.driver.quit()
 
 
-if __name__ == '__main__':
-    app = Bloomberg()
-    app.run()

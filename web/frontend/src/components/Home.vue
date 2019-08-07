@@ -62,11 +62,12 @@
 
 <script>
 import { formatDate } from "@/common/date.js";
-const catOptions = ["36kr", "21jingji", "tmtpost"];
+const catOptions = ["36kr", "21jingji", "tmtpost", "bloomberg"];
 const catDic = {
   "36kr": "36氪",
   "21jingji": "21经济",
-  tmtpost: "钛媒体"
+  "tmtpost": "钛媒体",
+  "bloomberg": "bloomberg",
 };
 export default {
   data() {
@@ -115,9 +116,9 @@ export default {
     getMoreData() {
       let skip = this.dataList.length;
       console.log(skip);
-      const path = this.$host + "/api/newsflow";
+      const url = this.$host + "/api/newsflow";
       this.$ajax
-        .get(path, {
+        .get(url, {
           params: {
             category: this.checkedCats,
             skip: skip
