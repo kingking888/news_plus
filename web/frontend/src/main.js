@@ -6,7 +6,9 @@ import router from './router'
 import axios from 'axios'
 import qs from 'qs'
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css';
+import 'element-ui/lib/theme-chalk/index.css'
+
+import '@/css/iconfont/iconfont.css'
 
 Vue.config.productionTip = false
 

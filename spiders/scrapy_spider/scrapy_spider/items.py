@@ -18,6 +18,7 @@ class NewsItem(scrapy.Item):
     title = scrapy.Field()
     content = scrapy.Field()
     href = scrapy.Field()
+    tags = scrapy.Field()
     ts_origin = scrapy.Field()
     ts_crawl = scrapy.Field()
     source = scrapy.Field()

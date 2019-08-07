@@ -36,7 +36,7 @@
                   :key="index"
                   class="news-card"
                 >
-                  <h4>
+                  <h4 class="title">
                     <a :href="item.href" target="_blank">{{ item.title }}</a>
                   </h4>
                   <div class="info">
@@ -44,6 +44,10 @@
                     <span>信息来源: {{ item.source | formatCatName }}</span>
                   </div>
                   <p class="summary">{{ item.content }}</p>
+                  <div class="tag" v-show="item.tags">
+                    <i class="iconfont icon-tag"></i>
+                    <a :href="itm.tag_href" v-for="(itm, idx) in item.tags" :key="idx" target="_blank">{{ itm.tag }}</a>
+                  </div>
                 </el-card>
                 <!-- 加载更多按钮 -->
                 <el-card shadow="hover" class="load-more">
@@ -153,7 +157,7 @@ export default {
 .news-card {
   margin: 10px 0;
 }
-.news-card a {
+.title a{
   text-decoration: none;
   color: #262626;
 }
@@ -173,6 +177,15 @@ export default {
   line-height: 24px;
   color: #787878;
   text-align: left;
+}
+.tag {
+  font-size: 12px;
+  
+}
+.tag a {
+  text-decoration: none;
+  margin: 0 5px;
+  color: #409EFF;
 }
 </style>
 

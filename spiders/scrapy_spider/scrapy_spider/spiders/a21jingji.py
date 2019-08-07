@@ -17,11 +17,13 @@ class A21jingjiSpider(scrapy.Spider):
             href = data.xpath(".//a[@class='listTit']/@href").extract_first()
             # 21经济没有发布时间, 用采集时间
             now = int(time.time())
+            tags = []
 
             item = dict(
                 title=title,
                 content=content,
                 href=href,
+                tags=tags,
                 ts_origin=now,
                 ts_crawl=now,
                 source=self.name
