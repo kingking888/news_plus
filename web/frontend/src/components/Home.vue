@@ -5,25 +5,29 @@
         <h1>PLUS+ 新闻采集</h1>
       </el-header>
       <el-main>
-        <el-row>
+        <el-row :gutter="10">
           <el-col :span="8">
             <el-row>
               <!-- 筛选框 -->
               <div class="block">
-                <el-card>
-                  <el-checkbox
-                    :indeterminate="isIndeterminate"
-                    v-model="checkAll"
-                    @change="handleCheckAllChange"
-                  >全选</el-checkbox>
-                  <el-checkbox-group v-model="checkedCats" @change="handleCheckedCatsChange">
-                    <el-checkbox
-                      v-for="(item, index) in categories"
-                      :label="item"
-                      :key="index"
-                    >{{ item | formatCatName }}</el-checkbox>
-                  </el-checkbox-group>
-                </el-card>
+                <el-collapse>
+                  <el-collapse-item title="筛选">
+                    <div class="filter-block">
+                      <el-checkbox
+                        :indeterminate="isIndeterminate"
+                        v-model="checkAll"
+                        @change="handleCheckAllChange"
+                      >全选</el-checkbox>
+                      <el-checkbox-group v-model="checkedCats" @change="handleCheckedCatsChange">
+                        <el-checkbox
+                          v-for="(item, index) in categories"
+                          :label="item"
+                          :key="index"
+                        >{{ item | formatCatName }}</el-checkbox>
+                      </el-checkbox-group>
+                    </div>
+                  </el-collapse-item>
+                </el-collapse>
               </div>
             </el-row>
             <el-row>
@@ -46,12 +50,17 @@
                   <p class="summary">{{ item.content }}</p>
                   <div class="tag" v-show="ifTag(item.tags)">
                     <i class="iconfont icon-tag"></i>
-                    <a :href="itm.tag_href" v-for="(itm, idx) in item.tags" :key="idx" target="_blank">{{ itm.tag }}</a>
+                    <a
+                      :href="itm.tag_href"
+                      v-for="(itm, idx) in item.tags"
+                      :key="idx"
+                      target="_blank"
+                    >{{ itm.tag }}</a>
                   </div>
                 </el-card>
                 <!-- 加载更多按钮 -->
-                <el-card shadow="hover" class="load-more">
-                  <p @click="getMoreData()">加载更多...</p>
+                <el-card shadow="hover" class="load-more" v-loading="loading">
+                  <el-button type="text" @click="getMoreData()">加载更多</el-button>
                 </el-card>
               </div>
             </el-row>
@@ -66,17 +75,27 @@
 
 <script>
 import { formatDate } from "@/common/date.js";
-const catOptions = ["36kr", "21jingji", "tmtpost", "doit", "zhitongcaijing", "thepaper", "kankan", "yicai", "bloomberg"];
+const catOptions = [
+  "36kr",
+  "21jingji",
+  "tmtpost",
+  "doit",
+  "zhitongcaijing",
+  "thepaper",
+  "kankan",
+  "yicai",
+  "bloomberg"
+];
 const catDic = {
   "36kr": "36氪",
   "21jingji": "21经济",
-  "tmtpost": "钛媒体",
-  "doit": "DOIT",
-  "zhitongcaijing": "智通财经",
-  "thepaper": "澎湃",
-  "kankan": "看看新闻",
-  "yicai": "第一财经",
-  "bloomberg": "bloomberg",
+  tmtpost: "钛媒体",
+  doit: "DOIT",
+  zhitongcaijing: "智通财经",
+  thepaper: "澎湃",
+  kankan: "看看新闻",
+  yicai: "第一财经",
+  bloomberg: "bloomberg"
 };
 export default {
   data() {
@@ -84,8 +103,18 @@ export default {
       checkAll: false,
       isIndeterminate: true,
       categories: catOptions,
-      checkedCats: ["36kr", "21jingji", "tmtpost", "doit", "zhitongcaijing", "thepaper", "kankan", "yicai"],
-      dataList: []
+      checkedCats: [
+        "36kr",
+        "21jingji",
+        "tmtpost",
+        "doit",
+        "zhitongcaijing",
+        "thepaper",
+        "kankan",
+        "yicai"
+      ],
+      dataList: [],
+      loading: false,
     };
   },
   created() {
@@ -123,8 +152,8 @@ export default {
         });
     },
     getMoreData() {
+      this.loading = true;
       let skip = this.dataList.length;
-      console.log(skip);
       const url = this.$host + "/api/newsflow";
       this.$ajax
         .get(url, {
@@ -139,17 +168,18 @@ export default {
         .then(res => {
           let newList = this.dataList.concat(res.data);
           this.dataList = newList;
+          this.loading = false;
         });
     },
     // 判断tag是否存在
     ifTag(tag) {
       if (!tag) {
-        return false
+        return false;
       }
-      if (tag.length==0) {
-        return false
+      if (tag.length == 0) {
+        return false;
       } else {
-        return true
+        return true;
       }
     }
   },
@@ -167,13 +197,13 @@ export default {
 </script>
 
 <style lang="css">
-.load-more {
+/* .load-more {
   height: 50px;
-}
+} */
 .news-card {
   margin: 10px 0;
 }
-.title a{
+.title a {
   text-decoration: none;
   color: #262626;
 }
@@ -201,7 +231,11 @@ export default {
 .tag a {
   text-decoration: none;
   margin: 0 5px;
-  color: #409EFF;
+  color: #409eff;
+}
+.filter-block {
+  font-size: 12px;
+  text-align: left;
 }
 </style>
 
