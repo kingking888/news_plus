@@ -66,13 +66,16 @@
 
 <script>
 import { formatDate } from "@/common/date.js";
-const catOptions = ["36kr", "21jingji", "tmtpost", "doit", "zhitongcaijing", "bloomberg"];
+const catOptions = ["36kr", "21jingji", "tmtpost", "doit", "zhitongcaijing", "thepaper", "kankan", "yicai", "bloomberg"];
 const catDic = {
   "36kr": "36氪",
   "21jingji": "21经济",
   "tmtpost": "钛媒体",
   "doit": "DOIT",
   "zhitongcaijing": "智通财经",
+  "thepaper": "澎湃",
+  "kankan": "看看新闻",
+  "yicai": "第一财经",
   "bloomberg": "bloomberg",
 };
 export default {
@@ -81,7 +84,7 @@ export default {
       checkAll: false,
       isIndeterminate: true,
       categories: catOptions,
-      checkedCats: ["36kr", "21jingji", "tmtpost", "doit", "zhitongcaijing"],
+      checkedCats: ["36kr", "21jingji", "tmtpost", "doit", "zhitongcaijing", "thepaper", "kankan", "yicai"],
       dataList: []
     };
   },

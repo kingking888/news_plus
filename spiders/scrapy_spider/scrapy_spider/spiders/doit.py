@@ -38,6 +38,3 @@ class DoitSpider(scrapy.Spider):
             )
 
             yield NewsItem(item)
-
-
-
