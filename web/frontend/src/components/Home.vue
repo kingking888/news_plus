@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-container>
+    <el-container class="content-container">
       <el-header>
         <h1>PLUS+ 新闻采集</h1>
       </el-header>
@@ -68,13 +68,20 @@
         </el-row>
       </el-main>
 
-      <el-footer></el-footer>
+      <el-footer>
+        <back-to-top>
+          <el-button icon="el-icon-arrow-up" circle>
+
+          </el-button>
+        </back-to-top>
+      </el-footer>
     </el-container>
   </div>
 </template>
 
 <script>
 import { formatDate } from "@/common/date.js";
+import BackToTop from 'vue-backtotop';
 const catOptions = [
   "36kr",
   "21jingji",
@@ -98,6 +105,9 @@ const catDic = {
   bloomberg: "bloomberg"
 };
 export default {
+  components: {
+    'back-to-top' :BackToTop
+  },
   data() {
     return {
       checkAll: false,
@@ -114,7 +124,7 @@ export default {
         "yicai"
       ],
       dataList: [],
-      loading: false,
+      loading: false
     };
   },
   created() {

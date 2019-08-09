@@ -16,8 +16,8 @@ Vue.use(ElementUI)
 
 Vue.prototype.$ajax = axios
 Vue.prototype.$qs = qs
-// Vue.prototype.$host = 'http://127.0.0.1:5000'
-Vue.prototype.$host = 'http://139.196.102.128:8000'
+Vue.prototype.$host = 'http://127.0.0.1:5000'
+// Vue.prototype.$host = 'http://139.196.102.128:8000'
 
 /* eslint-disable no-new */
 new Vue({
