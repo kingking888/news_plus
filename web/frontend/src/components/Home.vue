@@ -91,17 +91,21 @@ const catOptions = [
   "thepaper",
   "kankan",
   "yicai",
+  "stdaily",
+  "m21caijing",
   "bloomberg"
 ];
 const catDic = {
   "36kr": "36氪",
-  "21jingji": "21经济",
+  "21jingji": "21经济网",
   tmtpost: "钛媒体",
   doit: "DOIT",
   zhitongcaijing: "智通财经",
   thepaper: "澎湃",
   kankan: "看看新闻",
   yicai: "第一财经",
+  stdaily: "中国科技网",
+  m21caijing: "21财经",
   bloomberg: "bloomberg"
 };
 export default {
@@ -121,7 +125,9 @@ export default {
         "zhitongcaijing",
         "thepaper",
         "kankan",
-        "yicai"
+        "yicai",
+        "stdaily",
+        "m21caijing",
       ],
       dataList: [],
       loading: false
