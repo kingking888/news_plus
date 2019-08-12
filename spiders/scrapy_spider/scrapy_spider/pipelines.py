@@ -39,7 +39,7 @@ class DuplicatePipeline(object):
     def __init__(self):
         self.redis_db.flushdb()
         if self.redis_db.hlen(self.redis_data_dict) == 0:
-            db_docs = self.collection.find({}, {'href': 1, '_id': 0}).limit(20000)
+            db_docs = self.collection.find({}, {'href': 1, '_id': 0}).sort([('ts_crawl', -1)]).limit(20000)
             for obj in db_docs:
                 href = obj['href']
                 self.redis_db.hset(self.redis_data_dict, href, 0)
